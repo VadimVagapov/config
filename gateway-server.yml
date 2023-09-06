@@ -1,0 +1,36 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 30
+    
+server:
+  port: 8222
+
+spring:
+  cloud:
+    gateway:
+        routes:
+        - id: second-server
+          uri: lb://second-server
+          predicates:
+          - Path=/second-server/**
+          filters:
+          - RewritePath=/second-server/(?<path>.*), /$\{path}
+        - id: first-server
+          uri: lb://first-server
+          predicates:
+          - Path=/first-server/**
+          filters:
+          - RewritePath=/first-server/(?<path>.*), /$\{path}
+       
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
