@@ -15,19 +15,22 @@ server:
 spring:
   cloud:
     gateway:
-        routes:
-        - id: second-server
-          uri: lb://second-server
-          predicates:
-          - Path=/second-server/**
-          filters:
-          - RewritePath=/second-server/(?<path>.*), /$\{path}
-        - id: first-server
-          uri: lb://first-server
-          predicates:
-          - Path=/first-server/**
-          filters:
-          - RewritePath=/first-server/(?<path>.*), /$\{path}
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
+        # routes:
+        # - id: second-server
+        #   uri: lb://second-server
+        #   predicates:
+        #   - Path=/second-server/**
+        #   filters:
+        #   - RewritePath=/second-server/(?<path>.*), /$\{path}
+        # - id: first-server
+        #   uri: lb://first-server
+        #   predicates:
+        #   - Path=/first-server/**
+        #   filters:
+        #   - RewritePath=/first-server/(?<path>.*), /$\{path}
        
 management:
   endpoints:
