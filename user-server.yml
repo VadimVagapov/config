@@ -47,7 +47,7 @@ spring:
     banner-mode: off
   liquibase:
     enabled: true
-    change-log: db/changelog/changelog.yaml
+    change-log: classpath:db/changelog/changelog.yaml
   tomcat:
     uri-encoding: UTF-8
   profiles:
