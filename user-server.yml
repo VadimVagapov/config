@@ -35,7 +35,7 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
   datasource:
-    driverClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://${SERVER:localhost}:${PORT:5432}/${DB_NAME:cinema_collection_service_db}
     url: jdbc:postgresql://localhost:5444/cinema_collection_service_db
     username: postgres
